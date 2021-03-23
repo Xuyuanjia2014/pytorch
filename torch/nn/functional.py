@@ -1269,7 +1269,7 @@ In-place version of :func:`~threshold`.
 """,
 )
 
-
+# xyj 定义relu函数的入口
 def relu(input: Tensor, inplace: bool = False) -> Tensor:
     r"""relu(input, inplace=False) -> Tensor
 
