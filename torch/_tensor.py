@@ -197,7 +197,7 @@ class Tensor(torch._C._TensorBase):
             return handle_torch_function(Tensor.__repr__, (self,), self)
         # All strings are unicode in Python 3.
         return torch._tensor_str._str(self)
-
+# 计算图级的反向传播
     def backward(self, gradient=None, retain_graph=None, create_graph=False, inputs=None):
         r"""Computes the gradient of current tensor w.r.t. graph leaves.
 
@@ -249,7 +249,7 @@ class Tensor(torch._C._TensorBase):
                 create_graph=create_graph,
                 inputs=inputs)
         torch.autograd.backward(self, gradient, retain_graph, create_graph, inputs=inputs)
-
+    # xyj 在反向传播是执行预定义操作
     def register_hook(self, hook):
         r"""Registers a backward hook.
 

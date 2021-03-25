@@ -497,6 +497,7 @@ class profile(object):
         if not self.enabled:
             return
         if self.kineto_activities:
+            # xyj结果是从native method中得到的,通过第三方kineto库进行统一处理
             self.kineto_results = torch.autograd._disable_profiler()
             parsed_results = parse_kineto_results(self.kineto_results)
         else:
@@ -852,6 +853,7 @@ class FunctionEvent(FormattedTimesMixin):
         self.node_id: int = node_id
         self.name: str = name
         self.trace_name: str = trace_name
+        # 自身执行时间的计算
         self.time_range: Interval = Interval(start_us, end_us)
         self.thread: int = thread
         self.fwd_thread: Optional[int] = fwd_thread
@@ -951,7 +953,7 @@ class FunctionEvent(FormattedTimesMixin):
         else:
             assert(self.device_type == DeviceType.CUDA)
             return self.cuda_time_total
-
+    # xyj 获取自身的CPU执行时间
     @property
     def cpu_time_total(self):
         if self.device_type == DeviceType.CPU:

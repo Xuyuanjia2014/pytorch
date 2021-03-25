@@ -118,6 +118,7 @@ class FunctionMeta(type):
         return super(FunctionMeta, cls).__init__(name, bases, attrs)
 
 # mypy doesn't understand `with_metaclass` from torch._six
+# xyj 基于注解的方式，可以用来改善
 class Function(with_metaclass(FunctionMeta, _C._FunctionBase, _ContextMethodMixin, _HookMixin)):  # type: ignore
     r"""Records operation history and defines formulas for differentiating ops.
 

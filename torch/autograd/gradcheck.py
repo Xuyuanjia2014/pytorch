@@ -301,6 +301,7 @@ def _differentiable_outputs(x):
 # the '...' first argument of Callable can be replaced with VarArg(Tensor).
 # For now, we permit any input.
 
+# xyj 检查grad的书写是否正确
 def gradcheck(
     func: Callable[..., Union[_TensorOrTensors]],  # See Note [VarArg of Tensors]
     inputs: _TensorOrTensors,

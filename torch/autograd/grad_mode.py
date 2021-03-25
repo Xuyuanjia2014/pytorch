@@ -80,7 +80,7 @@ class _DecoratorContextManager:
     def __exit__(self, exc_type: Any, exc_value: Any, traceback: Any) -> None:
         raise NotImplementedError
 
-
+# xyj 是否进行grad的缓存
 class no_grad(_DecoratorContextManager):
     r"""Context-manager that disabled gradient calculation.
 

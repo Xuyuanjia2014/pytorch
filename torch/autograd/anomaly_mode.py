@@ -80,7 +80,7 @@ class detect_anomaly(object):
     def __exit__(self, *args: Any) -> None:
         torch.set_anomaly_enabled(self.prev)
 
-
+# xyj 检测自动求导的路径是否正确
 class set_detect_anomaly(object):
     r"""Context-manager that sets the anomaly detection for the autograd engine on or off.
 
