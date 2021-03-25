@@ -44,7 +44,7 @@ def _pin_memory_loop(in_queue, out_queue, device_id, done_event):
                 continue
         del r  # save memory
 
-
+# xyj pin_memory应该是调用了native方法
 def pin_memory(data):
     if isinstance(data, torch.Tensor):
         return data.pin_memory()

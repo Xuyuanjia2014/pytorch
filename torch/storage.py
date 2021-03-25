@@ -118,7 +118,7 @@ class _StorageBase(object):
     def complex_float(self):
         """Casts this storage to complex float type"""
         return self.type(type(self).__module__ + '.ComplexFloatStorage')
-
+# xyj 复制内存到cuda显存中
     def pin_memory(self):
         """Copies the storage to pinned memory, if it's not already pinned."""
         if self.is_cuda:

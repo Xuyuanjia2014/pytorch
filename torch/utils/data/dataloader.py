@@ -67,7 +67,7 @@ class _InfiniteConstantSampler(Sampler):
         while True:
             yield None
 
-
+# xyj DataLoader 使用 collate_fn 参数将样本列表整理成 batch
 class DataLoader(Generic[T_co]):
     r"""
     Data loader. Combines a dataset and a sampler, and provides an iterable over

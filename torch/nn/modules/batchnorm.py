@@ -9,7 +9,7 @@ from .. import init
 
 from typing import Optional, Any
 
-
+# xyj 实现对输入数据的正则化操作，包含多卡并行方式
 class _NormBase(Module):
     """Common base of _InstanceNorm and _BatchNorm"""
     _version = 2

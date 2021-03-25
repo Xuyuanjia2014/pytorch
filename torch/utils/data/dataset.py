@@ -12,7 +12,7 @@ from ... import Tensor, Generator
 T_co = TypeVar('T_co', covariant=True)
 T = TypeVar('T')
 
-
+# dataset用于load数据
 class Dataset(Generic[T_co]):
     r"""An abstract class representing a :class:`Dataset`.
 
