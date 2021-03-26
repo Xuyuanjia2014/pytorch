@@ -37,7 +37,7 @@ def _addindent(s_, numSpaces):
     s = first + '\n' + s
     return s
 
-
+# xyj不一定有1.8 C++的API好用，可以直接统计算子，module和function的关系不是太明确
 r"""This tracks hooks common to all modules that are executed before/after
 calling forward and backward. This is global state used for debugging/profiling
 purposes"""
@@ -78,7 +78,7 @@ def register_module_forward_pre_hook(hook: Callable[..., None]) -> RemovableHand
     _global_forward_pre_hooks[handle.id] = hook
     return handle
 
-
+# xyj目前pytorch只对forward函数的运行前后进行hook
 def register_module_forward_hook(hook: Callable[..., None]) -> RemovableHandle:
     r"""Registers a global forward hook for all the modules
 
@@ -617,6 +617,7 @@ class Module:
         fn(self)
         return self
 
+    # xyj 算子处理的输入放置具体设备的控制
     def cuda(self: T, device: Optional[Union[int, device]] = None) -> T:
         r"""Moves all model parameters and buffers to the GPU.
 
@@ -648,7 +649,7 @@ class Module:
             Module: self
         """
         return self._apply(lambda t: t.xpu(device))
-
+# xyj 算子处理的输入放置具体设备的控制
     def cpu(self: T) -> T:
         r"""Moves all model parameters and buffers to the CPU.
 
@@ -712,7 +713,7 @@ class Module:
     @overload
     def to(self: T, tensor: Tensor, non_blocking: bool = ...) -> T:
         ...
-
+# xyj device to
     def to(self, *args, **kwargs):
         r"""Moves and/or casts the parameters and buffers.
 
@@ -939,7 +940,7 @@ class Module:
                               "is deprecated and will be removed in future versions. This hook will be missing "
                               "some grad_input. Please use register_full_backward_hook to get the documented "
                               "behavior.")
-
+    # xyj在forward前执行
     def register_forward_pre_hook(self, hook: Callable[..., None]) -> RemovableHandle:
         r"""Registers a forward pre-hook on the module.
 
@@ -1236,7 +1237,7 @@ class Module:
         handle = hooks.RemovableHandle(self._load_state_dict_pre_hooks)
         self._load_state_dict_pre_hooks[handle.id] = hook
         return handle
-
+# 该方法可以用于模型的检查点和迁移优化
     def _load_from_state_dict(self, state_dict, prefix, local_metadata, strict,
                               missing_keys, unexpected_keys, error_msgs):
         r"""Copies parameters and buffers from :attr:`state_dict` into only

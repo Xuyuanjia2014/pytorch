@@ -153,7 +153,7 @@ class DataParallel(Module):
                 raise RuntimeError("module must have its parameters and buffers "
                                    "on device {} (device_ids[0]) but found one of "
                                    "them on device: {}".format(self.src_device_obj, t.device))
-
+# xyj parameter server的核心调用位置
         inputs, kwargs = self.scatter(inputs, kwargs, self.device_ids)
         # for forward function without any inputs, empty list and dict will be created
         # so the module can be executed on one device which is the first one in device_ids

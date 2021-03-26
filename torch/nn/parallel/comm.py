@@ -186,6 +186,7 @@ def scatter(tensor, devices=None, chunk_sizes=None, dim=0, streams=None, *, out=
     tensor = _handle_complex(tensor)
     if out is None:
         devices = [_get_device_index(d) for d in devices]
+        # xyj 实际C代码的位置
         return tuple(torch._C._scatter(tensor, devices, chunk_sizes, dim, streams))
     else:
         if devices is not None:

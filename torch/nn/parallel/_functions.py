@@ -93,7 +93,8 @@ class Scatter(Function):
         if torch.cuda.is_available() and ctx.input_device == -1:
             # Perform CPU to GPU copies in a background stream
             streams = [_get_stream(device) for device in target_gpus]
-        outputs = comm.scatter(input, target_gpus, chunk_sizes, ctx.dim, streams)
+       # xyj 实际ps发生的位置
+       outputs = comm.scatter(input, target_gpus, chunk_sizes, ctx.dim, streams)
         # Synchronize with the copy stream
         if streams is not None:
             for i, output in enumerate(outputs):
