@@ -184,7 +184,7 @@ class Optimizer(object):
         param_groups = [
             update_group(g, ng) for g, ng in zip(groups, saved_groups)]
         self.__setstate__({'state': state, 'param_groups': param_groups})
-
+# xyj 清空所有变量的梯度
     def zero_grad(self, set_to_none: bool = False):
         r"""Sets the gradients of all optimized :class:`torch.Tensor` s to zero.
 

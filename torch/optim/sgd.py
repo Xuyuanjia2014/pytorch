@@ -72,7 +72,7 @@ class SGD(Optimizer):
         super(SGD, self).__setstate__(state)
         for group in self.param_groups:
             group.setdefault('nesterov', False)
-
+# xyj SDG的梯度清空
     @torch.no_grad()
     def step(self, closure=None):
         """Performs a single optimization step.

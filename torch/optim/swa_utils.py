@@ -4,7 +4,7 @@ from torch.nn import Module
 from copy import deepcopy
 from torch.optim.lr_scheduler import _LRScheduler
 
-
+# xyj swa算法的具体实现
 class AveragedModel(Module):
     r"""Implements averaged model for Stochastic Weight Averaging (SWA).
 

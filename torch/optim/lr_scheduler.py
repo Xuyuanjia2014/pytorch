@@ -18,7 +18,7 @@ EPOCH_DEPRECATION_WARNING = (
     "Please open an issue if you are unable to replicate your use case: "
     "https://github.com/pytorch/pytorch/issues/new/choose."
 )
-
+# xyj 学习率调节器
 class _LRScheduler(object):
 
     def __init__(self, optimizer, last_epoch=-1, verbose=False):
@@ -330,7 +330,7 @@ class MultiplicativeLR(_LRScheduler):
         else:
             return list(self.base_lrs)
 
-
+# xyj 据 epoch 的等间隔学习率调整策略，需要设置decay的系数
 class StepLR(_LRScheduler):
     """Decays the learning rate of each parameter group by gamma every
     step_size epochs. Notice that such decay can happen simultaneously with
@@ -457,7 +457,7 @@ class ExponentialLR(_LRScheduler):
         return [base_lr * self.gamma ** self.last_epoch
                 for base_lr in self.base_lrs]
 
-
+# xyj 余弦退火算法
 class CosineAnnealingLR(_LRScheduler):
     r"""Set the learning rate of each parameter group using a cosine annealing
     schedule, where :math:`\eta_{max}` is set to the initial lr and
